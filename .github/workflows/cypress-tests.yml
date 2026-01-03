@@ -1,1 +1,39 @@
+name: Cypress UI Tests
 
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox]
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Executar testes Cypress
+        run: npx cypress run --browser ${{ matrix.browser }}
+
+      - name: Upload de relatórios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-report-${{ matrix.browser }}
+          path: |
+            cypress/videos
+            cypress/screenshots
