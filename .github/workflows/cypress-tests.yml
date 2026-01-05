@@ -22,6 +22,12 @@ jobs:
       - name: Rodar Cypress
         run: npx cypress run
 
+      - name: Garantir pastas de artefato
+      if: always()
+      run: |
+        mkdir -p cypress/videos
+        mkdir -p cypress/screenshots
+      
       - name: Upload evidências do Cypress
         if: always()
         uses: actions/upload-artifact@v4
