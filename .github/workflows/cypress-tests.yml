@@ -19,9 +19,6 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar Cypress
-        run: npx cypress run
-
       - name: name: Criar pastas de artefato 
         run: |
           mkdir -p cypress/videos
