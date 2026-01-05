@@ -9,30 +9,18 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        browser:
-          - chrome
-
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Instalar dependências
-        run: |
-        cd ui-tests
-        npm install
+        run: npm install
 
-      - name: Executar testes Cypress
-        run: |
-        cd ui-tests
-        npx cypress run --browser chrome
+      - name: Rodar Cypress
+        run: npx cypress run
 
       - name: Upload evidências
         if: always()
@@ -40,5 +28,5 @@ jobs:
         with:
           name: cypress-evidencias
           path: |
-            ui-tests/cypress/videos
-            ui-tests/cypress/screenshots
+            cypress/videos
+            cypress/screenshots
