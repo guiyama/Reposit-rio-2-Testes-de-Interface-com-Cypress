@@ -25,10 +25,14 @@ jobs:
           node-version: 18
 
       - name: Instalar dependências
-        run: npm install
+        run: |
+        cd ui-tests
+        npm install
 
       - name: Executar testes Cypress
-        run: npx cypress run --browser chrome
+        run: |
+        cd ui-tests
+        npx cypress run --browser chrome
 
       - name: Upload evidências
         if: always()
@@ -36,5 +40,5 @@ jobs:
         with:
           name: cypress-evidencias
           path: |
-            cypress/videos
-            cypress/screenshots
+            ui-tests/cypress/videos
+            ui-tests/cypress/screenshots
