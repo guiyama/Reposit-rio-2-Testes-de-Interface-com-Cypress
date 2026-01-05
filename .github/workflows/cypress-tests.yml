@@ -25,14 +25,10 @@ jobs:
           node-version: 18
 
       - name: Instalar dependências
-        run: |
-          cd cypress
-          npm install
+        run: npm install
 
       - name: Executar testes Cypress
-        run: |
-          cd cypress
-          npx cypress run --browser ${{ matrix.browser }}
+        run: npx cypress run --browser chrome
 
       - name: Upload evidências
         if: always()
@@ -40,5 +36,5 @@ jobs:
         with:
           name: cypress-evidencias
           path: |
-            cypress/cypress/videos
-            cypress/cypress/screenshots
+            cypress/videos
+            cypress/screenshots
