@@ -24,9 +24,13 @@ jobs:
           node-version: 18
 
       - name: Instalar dependências
-        run: npm install
+        run: |
+        cd ui-tests
+        npm install
 
       - name: Executar testes Cypress
+         run: |
+        cd ui-tests
         run: npx cypress run --browser ${{ matrix.browser }}
 
       - name: Upload de relatórios
