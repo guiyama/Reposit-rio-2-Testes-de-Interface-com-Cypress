@@ -22,11 +22,11 @@ jobs:
       - name: Rodar Cypress
         run: npx cypress run
 
-      - name: Upload evidências
+      - name: Upload evidências do Cypress
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-evidencias
+          name: cypress-artifacts
           path: |
             cypress/videos
-            cypress/screenshots
+            cypress/screenshots  
