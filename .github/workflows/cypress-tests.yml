@@ -19,14 +19,14 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: name: Criar pastas de artefato 
+      - name: Criar pastas de artefato
         run: |
           mkdir -p cypress/videos
           mkdir -p cypress/screenshots
 
       - name: Rodar Cypress
         run: npx cypress run
-      
+
       - name: Upload artefatos do Cypress
         if: always()
         uses: actions/upload-artifact@v4
